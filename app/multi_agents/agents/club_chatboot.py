@@ -1,5 +1,5 @@
 from crewai import Agent
-from tools.database_tools import DatabaseTool
+from tools.jsontool import JSONDatabase
 from langchain_openai import ChatOpenAI
 
 def create_club_chatbot(club_id: str, club_personality: str = "friendly") -> Agent:
@@ -14,7 +14,9 @@ def create_club_chatbot(club_id: str, club_personality: str = "friendly") -> Age
         with applications, share links, and explain requirements clearly.""",
         verbose=True,
         allow_delegation=False,
-        tools=[DatabaseTool()],
+        tools=[
+            JSONDatabase()
+        ],
         llm=ChatOpenAI(model="gpt-4", temperature=0.8),
         memory=True
     )

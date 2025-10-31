@@ -1,6 +1,5 @@
 from crewai import Agent
-from tools.database_tools import DatabaseTool, ProfileUpdateTool
-from tools.recommendation_tools import RecommendationTool
+from tools.jsontool import JSONDatabase
 from langchain_openai import ChatOpenAI
 
 def create_onboarding_agent() -> Agent:
@@ -17,9 +16,9 @@ def create_onboarding_agent() -> Agent:
         verbose=True,
         allow_delegation=True,
         tools=[
-            DatabaseTool(),
-            ProfileUpdateTool(),
-            RecommendationTool()
+            JSONDatabase()
+
+            
         ],
         llm=ChatOpenAI(model="gpt-4", temperature=0.7),
         memory=True

@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from crews.main_crew import ClubEventHubCrew
+from multi_agents.crew import ClubEventHubCrew
 
 # Load environment variables
 load_dotenv()

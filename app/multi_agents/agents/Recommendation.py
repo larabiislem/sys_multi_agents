@@ -1,6 +1,5 @@
 from crewai import Agent
-from tools.recommendation_tools import RecommendationTool, CollaborativeFilteringTool
-from tools.database_tools import DatabaseTool
+from tools.jsontool import JSONDatabase
 from langchain_openai import ChatOpenAI
 
 def create_recommendation_agent() -> Agent:
@@ -16,9 +15,7 @@ def create_recommendation_agent() -> Agent:
         verbose=True,
         allow_delegation=False,
         tools=[
-            RecommendationTool(),
-            CollaborativeFilteringTool(),
-            DatabaseTool()
+            JSONDatabase()
         ],
         llm=ChatOpenAI(model="gpt-4", temperature=0.6)
     )
