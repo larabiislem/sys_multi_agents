@@ -35,7 +35,7 @@ class ClubEventHubCrew:
      
         routing_task = create_routing_task(self.master_orchestrator, student_query)
         
-        # Create crew for routing
+    
         routing_crew = Crew(
             agents=[self.master_orchestrator],
             tasks=[routing_task],
@@ -110,7 +110,7 @@ class ClubEventHubCrew:
         return crew.kickoff()
     
     def handle_weekly_digest(self, student_id: str):
-        """Generate weekly digest"""
+
         
         
         task = create_weekly_digest_task(self.recommendation_agent, student_id)

@@ -3,7 +3,7 @@ from tools.jsontool import JSONDatabase
 from langchain_openai import ChatOpenAI
 
 def create_club_chatbot(club_id: str, club_personality: str = "friendly") -> Agent:
-    """Create a Club-specific Chatbot Agent"""
+  
     return Agent(
         role=f'Club Chatbot for Club {club_id}',
         goal=f'Answer all questions about this club with a {club_personality} personality',
