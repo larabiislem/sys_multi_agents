@@ -1,10 +1,15 @@
 from crewai import Crew, Process
-from agents.master import create_master_orchestrator
-from agents.club_chatboot import create_club_chatbot
-from agents.Recommendation import create_recommendation_agent
-from agents.search_agent import create_search_agent
-from agents.onboarding_agent import create_onboarding_agent
-from tasks.master_task import create_routing_task
+from .agents.master import create_master_orchestrator
+from .agents.club_chatboot import create_club_chatbot
+from .agents.Recommendation import create_recommendation_agent
+from .agents.search_agent import create_search_agent
+from .agents.onboarding_agent import create_onboarding_agent
+from .tasks.master_task import create_routing_task
+from .tasks.recemndation import create_weekly_digest_task
+from .tasks.clubchatboot import create_club_info_task
+from .tasks.onboarding import create_onboarding_task
+from .tasks.recemndation import create_personalized_recommendations_task
+from .tasks.search_tasks import create_search_task
 from typing import Dict, Any
 
 class ClubEventHubCrew:
@@ -24,11 +29,10 @@ class ClubEventHubCrew:
         return self.club_chatbots[club_id]
     
     def process_student_query(self, student_query: str, context: Dict[str, Any] = None) -> str:
-        """Process a student query through the crew"""
+  
         if context is None:
             context = {}
-        
-        # Create routing task
+     
         routing_task = create_routing_task(self.master_orchestrator, student_query)
         
         # Create crew for routing
@@ -38,15 +42,15 @@ class ClubEventHubCrew:
             process=Process.sequential,
             verbose=True
         )
-        
-        # Execute routing
+  
         routing_result = routing_crew.kickoff()
         
         return routing_result
     
     def handle_club_query(self, club_id: str, student_question: str, club_personality: str = "friendly"):
-        """Handle club-specific queries"""
-        from tasks.club_tasks import create_club_info_task
+   
+   
+    
         
         club_agent = self.get_club_chatbot(club_id, club_personality)
         task = create_club_info_task(club_agent, club_id, student_question)
@@ -61,8 +65,8 @@ class ClubEventHubCrew:
         return crew.kickoff()
     
     def handle_recommendation_request(self, student_id: str):
-        """Handle recommendation requests"""
-        from tasks.recommendation_tasks import create_personalized_recommendations_task
+
+        
         
         task = create_personalized_recommendations_task(self.recommendation_agent, student_id)
         
@@ -76,8 +80,8 @@ class ClubEventHubCrew:
         return crew.kickoff()
     
     def handle_search_query(self, search_query: str, filters: dict = None):
-        """Handle search queries"""
-        from tasks.search_tasks import create_search_task
+        
+       
         
         task = create_search_task(self.search_agent, search_query, filters)
         
@@ -91,8 +95,8 @@ class ClubEventHubCrew:
         return crew.kickoff()
     
     def handle_onboarding(self, student_id: str):
-        """Handle student onboarding"""
-        from tasks.onboarding_tasks import create_onboarding_task
+
+
         
         task = create_onboarding_task(self.onboarding_agent, student_id)
         
@@ -107,7 +111,7 @@ class ClubEventHubCrew:
     
     def handle_weekly_digest(self, student_id: str):
         """Generate weekly digest"""
-        from tasks.recommendation_tasks import create_weekly_digest_task
+        
         
         task = create_weekly_digest_task(self.recommendation_agent, student_id)
         
