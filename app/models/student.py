@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from database import Base
-from models.relations  import student_skills, event_registrations, club_members
+from .relations  import student_skills, event_registrations, club_members
 
 
 class Student(Base):

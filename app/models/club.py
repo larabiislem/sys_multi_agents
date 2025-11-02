@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from database import Base
-from models.relations import club_members
+from .relations import club_members
 
 
 class Club(Base):

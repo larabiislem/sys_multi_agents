@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, Foreign
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from database import Base
-from models.relations import event_skills, event_registrations
+from .relations import event_skills, event_registrations
 
 
 class Event(Base):
