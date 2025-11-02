@@ -1,5 +1,5 @@
 from crewai import Agent
-from tools.databasetool import DatabaseTool
+from ..tools.databasetool import DatabaseTool
 from langchain_openai import ChatOpenAI
 import os
 

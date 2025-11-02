@@ -42,11 +42,14 @@ def populate_sample_data():
         
         skills = []
         for name, category in skills_data:
-            skill = Skill(name=name, category=category)
-            skills.append(skill)
-            session.add(skill)
+            # Check if skill already exists
+            existing_skill = session.query(Skill).filter(Skill.name == name).first()
+            if not existing_skill:
+                skill = Skill(name=name, category=category)
+                skills.append(skill)
+                session.add(skill)
         session.commit()
-        print(f"   ✅ Created {len(skills)} skills")
+        print(f"   ✅ Created/verified {len(skills_data)} skills")
         
         # Create Clubs
         print("🎯 Creating clubs...")
@@ -109,11 +112,16 @@ def populate_sample_data():
         
         clubs = []
         for club_data in clubs_data:
-            club = Club(**club_data)
-            clubs.append(club)
-            session.add(club)
+            # Check if club already exists
+            existing_club = session.query(Club).filter(Club.name == club_data["name"]).first()
+            if not existing_club:
+                club = Club(**club_data)
+                clubs.append(club)
+                session.add(club)
+            else:
+                clubs.append(existing_club)
         session.commit()
-        print(f"   ✅ Created {len(clubs)} clubs")
+        print(f"   ✅ Created/verified {len(clubs_data)} clubs")
         
         # Create Events
         print("📅 Creating events...")
@@ -185,6 +193,13 @@ def populate_sample_data():
         students = []
         for i, name in enumerate(student_names):
             email = name.lower().replace(" ", ".") + "@student.university.edu"
+            
+            # Check if student already exists
+            existing_student = session.query(Student).filter(Student.email == email).first()
+            if existing_student:
+                students.append(existing_student)
+                continue
+                
             field = random.choice(fields_of_study)
             
             student = Student(
