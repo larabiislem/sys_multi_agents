@@ -1,6 +1,6 @@
 
 from fastapi import APIRouter
-from ..schemas.agent import (
+from ...schemas.agent import (
     SearchRequest, SearchResponse, ErrorResponse
 )
 from multi_agents.crew import ClubEventHubCrew

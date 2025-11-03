@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from ..schemas.agent import (
+from ...schemas.agent import (
     RecommendationRequest, RecommendationResponse,
     WeeklyDigestRequest, WeeklyDigestResponse,
     ErrorResponse

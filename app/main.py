@@ -1,5 +1,5 @@
 
-from api.routers import chat, master, recommendations, search
+from api.routers.agents import chat, master, recommendations, search
 from fastapi import FastAPI
 
 

@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, HTTPException, status, Depends
 from sqlalchemy.orm import Session
-from ..schemas.agent import (
+from ...schemas.agent import (
     ChatRequest, ChatResponse, ErrorResponse
 )
 from multi_agents.crew import ClubEventHubCrew
