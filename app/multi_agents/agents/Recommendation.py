@@ -2,19 +2,22 @@ from crewai import Agent
 from ..tools.databasetool import DatabaseTool
 import os
 from dotenv import load_dotenv
-import openai
+from .openrouter import OpenRouterLLM
+
 
 load_dotenv()
 
-# 🔧 Configuration OpenRouter
-openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_base = os.getenv("OPENAI_API_BASE", "https://openrouter.ai/api/v1")
 
-# CrewAI compatibilité
-os.environ["OPENAI_API_KEY"] = openai.api_key
-os.environ["OPENAI_API_BASE"] = openai.api_base
 
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+
+
+load_dotenv()
+
+MODEL = OpenRouterLLM(
+    model=os.getenv("MODEL_NAME", "gpt-4o-mini"),
+    api_key=os.getenv("OPENAI_API_KEY"),  # CrewAI lit ici
+    base_url=os.getenv("OPENAI_API_BASE", "https://openrouter.ai/api/v1")
+)
 
 
 def create_recommendation_agent() -> Agent:
