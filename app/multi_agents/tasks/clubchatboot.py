@@ -4,17 +4,14 @@ def create_club_info_task(agent, club_id: str, student_question: str) -> Task:
   
     return Task(
         description=f"""Answer the following question about Club {club_id}:
-        
-        Question: {student_question}
-        
-        Provide comprehensive information about:
-        - Club history and mission
-        - Current members and leadership
-        - Upcoming events
-        - How to join and requirements
-        - Any relevant links or resources
-        
-        Match the club's personality in your response.""",
+
+Question: {student_question}
+
+Respond concisely and directly based on the question. 
+Only include detailed information (such as history, mission, members, events, joining requirements, or resources) **if the user specifically asks for it** or if it is clearly relevant to the question.
+
+Always match the club's personality and tone in your response.
+""",
         agent=agent,
         expected_output="Detailed, personalized answer about the club"
     )
