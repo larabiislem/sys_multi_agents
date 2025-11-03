@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from ..schemas.agent import (
     SearchRequest, SearchResponse, ErrorResponse
 )
-from ...multi_agents.crew import ClubEventHubCrew
+from multi_agents.crew import ClubEventHubCrew
 import logging
 import json
 

@@ -4,9 +4,9 @@ from ..schemas.agent import (
     WeeklyDigestRequest, WeeklyDigestResponse,
     ErrorResponse
 )
-from ...multi_agents.crew import ClubEventHubCrew
-from models import  Student
-from ...database import get_session
+from multi_agents.crew import ClubEventHubCrew
+from models import Student
+from database import get_session
 from sqlalchemy.orm import Session
 import logging
 

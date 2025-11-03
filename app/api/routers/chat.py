@@ -4,9 +4,9 @@ from sqlalchemy.orm import Session
 from ..schemas.agent import (
     ChatRequest, ChatResponse, ErrorResponse
 )
-from ...multi_agents.crew import ClubEventHubCrew
-from models import  Club
-from ...database import get_session
+from multi_agents.crew import ClubEventHubCrew
+from models import Club
+from database import get_session
 import logging
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
