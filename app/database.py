@@ -17,7 +17,7 @@ def get_engine():
     if DATABASE_URL.startswith('postgres://'):
         DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
     
-    print(f"Using database URL: {DATABASE_URL}")
+    # Removed print statement to avoid exposing secrets in logs
     return create_engine(DATABASE_URL, echo=True)
 
 
