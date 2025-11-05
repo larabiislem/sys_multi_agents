@@ -8,7 +8,7 @@ from ...schemas.agent import (
     ErrorResponse
 )
 from multi_agents.crew import ClubEventHubCrew
-from ..autontification.auth import get_current_user 
+from ..autontification.token import get_current_user 
 import logging
 import json
 
@@ -29,12 +29,11 @@ def get_crew():
 
 @router.post("/", response_model=RecommendationResponse)
 async def get_recommendations(
-    request: RecommendationRequest,
     db: Session = Depends(get_session),
-    current_student: dict = Depends(get_current_user) 
+   current_user=Depends(get_current_user)
 ):
   
-    student_email = current_student.get("email")
+    student_email = current_user.get("email")
     student = db.query(Student).filter(Student.email == student_email).first()
 
     if not student:
