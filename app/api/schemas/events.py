@@ -4,7 +4,6 @@ from datetime import datetime
 
 
 class EventCreate(BaseModel):
-    club_id: int
     title: str
     description: Optional[str] = None
     event_type: Optional[str] = None
