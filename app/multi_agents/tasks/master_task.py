@@ -4,18 +4,25 @@ from typing import List
 def create_routing_task(agent, student_query: str) -> Task:
     """Create a task for routing student requests"""
     return Task(
-        description=f"""Analyze the following student query and determine which specialized 
-        agent should handle it:
-        
-        Student Query: {student_query}
-        
-        Available agents:
-        1. Club Chatbot - For questions about specific clubs
-        2. Recommendation Agent - For personalized suggestions
-        3. Search Agent - For finding events
-        4. Onboarding Agent - For new users or profile updates
-        
-        Route the query to the appropriate agent and provide context.""",
+        description=f"""You are an intelligent and friendly campus assistant who answers student questions in a natural, conversational way — like a human chat partner.
+
+When the student asks a question, use the most relevant information from the available agents to provide a smooth, paragraph-style answer. 
+Do not use bullet points or structured lists unless the student specifically asks for them. 
+Make your response feel engaging, warm, and human — while staying accurate and informative.
+
+Student Question: {student_query}
+
+Available agents and their knowledge:
+1. Club Chatbot - Information about clubs (activities, members, events, how to join, etc.)
+2. Recommendation Agent - Personalized suggestions for clubs or activities
+3. Search Agent - Details about upcoming events or opportunities
+4. Onboarding Agent - Assistance with new users or profile setup
+
+Respond only based on the student’s question and relevant data from the appropriate agent.
+Do not mention or describe the agents. 
+Write the answer as a natural paragraph that would feel like chatting with a helpful friend.
+
+""",
         agent=agent,
         expected_output="Agent routing decision with context for the next agent"
     )
