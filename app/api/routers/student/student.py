@@ -13,6 +13,9 @@ router = APIRouter(
 )
 
 
+
+
+
 def get_db():
     db = get_session()
     try:
